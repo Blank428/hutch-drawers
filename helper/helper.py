@@ -16,7 +16,7 @@ REPO = os.path.dirname(HERE)                       # the git clone this file liv
 LABELS = os.path.join(os.path.dirname(REPO), "labels")
 NODE = next((p for p in ("/opt/homebrew/bin/node", "/usr/local/bin/node", "/usr/bin/node") if os.path.exists(p)), "node")
 PROJECT = re.compile(r"^projects/[A-Za-z0-9_\-/]+\.3mf$")
-VERSION = "1.0"
+VERSION = "1.1"
 _last_pull = 0.0
 _pull_lock = threading.Lock()
 
@@ -40,8 +40,10 @@ on closeIn(appName)
   if application appName is running then
     tell application appName
       repeat with w in windows
-        repeat with t in (tabs of w)
-          if (URL of t) starts with "http://127.0.0.1:%d" then close t
+        repeat with i from (count of tabs of w) to 1 by -1
+          try
+            if (URL of tab i of w) starts with "http://127.0.0.1:%d" then close tab i of w
+          end try
         end repeat
       end repeat
     end tell
