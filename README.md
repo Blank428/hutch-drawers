@@ -110,3 +110,12 @@ The build tracker uses those links for its "Open in Bambu Studio" buttons.
 2. Slide each faceplate down onto its drawer's two posts.
 3. Push each drawer into its frame; the latch nubs click past the front edge.
 4. Press 4 foot pads under each column's bottom module, stack the column on the desk, press 4 spacers onto the top module's bumps, and slide the column into its cubby.
+
+## Mac helper
+
+`helper/` is a small local helper for the build tracker. It keeps a copy of this repo on the Mac,
+opens a project straight in Bambu Studio when you press "Open in Bambu Studio" in the tracker
+(local files skip Bambu's "not from a trusted site" prompt), and builds label tag plates on demand:
+one plate per front colour with the colour-change pause already set at 0.8 mm.
+
+Install or update: `bash helper/install.sh` (runs at login via a LaunchAgent, listens on 127.0.0.1:47833 only).
