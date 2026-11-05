@@ -1,0 +1,362 @@
+{
+ "fit_frame": {
+  "path": "projects/fit-test/fit_frame.3mf",
+  "title": "Fit-test frame",
+  "plates": 1,
+  "objects": 1,
+  "grams": 185.6,
+  "minutes": 200.9,
+  "filament": "black",
+  "warning": ""
+ },
+ "latch_test_row_right": {
+  "path": "projects/latches/latch_test_row_right.3mf",
+  "title": "Latch test row right",
+  "plates": 1,
+  "objects": 1,
+  "grams": 6.4,
+  "minutes": 23.7,
+  "filament": "petg",
+  "warning": ""
+ },
+ "latch_test_row_left": {
+  "path": "projects/latches/latch_test_row_left.3mf",
+  "title": "Latch test row left",
+  "plates": 1,
+  "objects": 1,
+  "grams": 6.4,
+  "minutes": 23.6,
+  "filament": "petg",
+  "warning": ""
+ },
+ "latch_row_right": {
+  "path": "projects/latches/latch_row_right.3mf",
+  "title": "Latch row right",
+  "plates": 1,
+  "objects": 1,
+  "grams": 30.2,
+  "minutes": 105.4,
+  "filament": "petg",
+  "warning": ""
+ },
+ "latch_row_left": {
+  "path": "projects/latches/latch_row_left.3mf",
+  "title": "Latch row left",
+  "plates": 1,
+  "objects": 1,
+  "grams": 30.2,
+  "minutes": 107.9,
+  "filament": "petg",
+  "warning": ""
+ },
+ "latch_soft_test_row_right": {
+  "path": "projects/latches/latch_soft_test_row_right.3mf",
+  "title": "Latch soft test row right",
+  "plates": 1,
+  "objects": 1,
+  "grams": 6.4,
+  "minutes": 23.6,
+  "filament": "petg",
+  "warning": ""
+ },
+ "latch_soft_test_row_left": {
+  "path": "projects/latches/latch_soft_test_row_left.3mf",
+  "title": "Latch soft test row left",
+  "plates": 1,
+  "objects": 1,
+  "grams": 6.4,
+  "minutes": 23.4,
+  "filament": "petg",
+  "warning": ""
+ },
+ "latch_firm_test_row_right": {
+  "path": "projects/latches/latch_firm_test_row_right.3mf",
+  "title": "Latch firm test row right",
+  "plates": 1,
+  "objects": 1,
+  "grams": 6.4,
+  "minutes": 23.8,
+  "filament": "petg",
+  "warning": ""
+ },
+ "latch_firm_test_row_left": {
+  "path": "projects/latches/latch_firm_test_row_left.3mf",
+  "title": "Latch firm test row left",
+  "plates": 1,
+  "objects": 1,
+  "grams": 6.4,
+  "minutes": 23.7,
+  "filament": "petg",
+  "warning": ""
+ },
+ "face_74_black_x3": {
+  "path": "projects/modules-74mm/faceplate_74mm_black_x3.3mf",
+  "title": "74mm faceplate, black, 3 per plate",
+  "plates": 1,
+  "objects": 3,
+  "grams": 102.7,
+  "minutes": 136.6,
+  "filament": "black",
+  "warning": ""
+ },
+ "pads": {
+  "path": "projects/tpu/foot_pads_x32.3mf",
+  "title": "Foot pads, 32",
+  "plates": 1,
+  "objects": 32,
+  "grams": 2.7,
+  "minutes": 11.2,
+  "filament": "tpu",
+  "warning": ""
+ },
+ "fit_drawer": {
+  "path": "projects/fit-test/fit_drawer.3mf",
+  "title": "Fit-test drawer",
+  "plates": 1,
+  "objects": 1,
+  "grams": 129.8,
+  "minutes": 168.3,
+  "filament": "black",
+  "warning": ""
+ },
+ "fit_face_black": {
+  "path": "projects/fit-test/fit_faceplate_black.3mf",
+  "title": "Fit-test faceplate, black",
+  "plates": 1,
+  "objects": 1,
+  "grams": 34.3,
+  "minutes": 45.9,
+  "filament": "black",
+  "warning": ""
+ },
+ "fit_face_sage": {
+  "path": "projects/fit-test/fit_faceplate_sage.3mf",
+  "title": "Fit-test faceplate, sage",
+  "plates": 1,
+  "objects": 1,
+  "grams": 34.3,
+  "minutes": 45.7,
+  "filament": "sage",
+  "warning": ""
+ },
+ "frame_128": {
+  "path": "projects/modules-128mm/frame_128mm.3mf",
+  "title": "128mm frame",
+  "plates": 1,
+  "objects": 1,
+  "grams": 311.0,
+  "minutes": 423.0,
+  "filament": "black",
+  "warning": ""
+ },
+ "drawer_128": {
+  "path": "projects/modules-128mm/drawer_128mm.3mf",
+  "title": "128mm drawer",
+  "plates": 1,
+  "objects": 1,
+  "grams": 318.9,
+  "minutes": 368.5,
+  "filament": "black",
+  "warning": ""
+ },
+ "face_128_black_x1": {
+  "path": "projects/modules-128mm/faceplate_128mm_black_x1.3mf",
+  "title": "128mm faceplate, black, 1 per plate",
+  "plates": 1,
+  "objects": 1,
+  "grams": 61.8,
+  "minutes": 76.5,
+  "filament": "black",
+  "warning": ""
+ },
+ "frame_66": {
+  "path": "projects/modules-66mm/frame_66mm.3mf",
+  "title": "66mm frame",
+  "plates": 1,
+  "objects": 1,
+  "grams": 259.1,
+  "minutes": 359.0,
+  "filament": "black",
+  "warning": ""
+ },
+ "drawer_66": {
+  "path": "projects/modules-66mm/drawer_66mm.3mf",
+  "title": "66mm drawer",
+  "plates": 1,
+  "objects": 1,
+  "grams": 195.0,
+  "minutes": 237.5,
+  "filament": "black",
+  "warning": ""
+ },
+ "face_66_black_x1": {
+  "path": "projects/modules-66mm/faceplate_66mm_black_x1.3mf",
+  "title": "66mm faceplate, black, 1 per plate",
+  "plates": 1,
+  "objects": 1,
+  "grams": 30.2,
+  "minutes": 41.4,
+  "filament": "black",
+  "warning": ""
+ },
+ "face_66_black_x2": {
+  "path": "projects/modules-66mm/faceplate_66mm_black_x2.3mf",
+  "title": "66mm faceplate, black, 2 per plate",
+  "plates": 1,
+  "objects": 2,
+  "grams": 60.3,
+  "minutes": 82.2,
+  "filament": "black",
+  "warning": ""
+ },
+ "face_66_sage_x1": {
+  "path": "projects/modules-66mm/faceplate_66mm_sage_x1.3mf",
+  "title": "66mm faceplate, sage, 1 per plate",
+  "plates": 1,
+  "objects": 1,
+  "grams": 30.2,
+  "minutes": 41.3,
+  "filament": "sage",
+  "warning": ""
+ },
+ "face_66_sage_x2": {
+  "path": "projects/modules-66mm/faceplate_66mm_sage_x2.3mf",
+  "title": "66mm faceplate, sage, 2 per plate",
+  "plates": 1,
+  "objects": 2,
+  "grams": 60.3,
+  "minutes": 81.9,
+  "filament": "sage",
+  "warning": ""
+ },
+ "frame_74": {
+  "path": "projects/modules-74mm/frame_74mm.3mf",
+  "title": "74mm frame",
+  "plates": 1,
+  "objects": 1,
+  "grams": 266.2,
+  "minutes": 366.7,
+  "filament": "black",
+  "warning": ""
+ },
+ "drawer_74": {
+  "path": "projects/modules-74mm/drawer_74mm.3mf",
+  "title": "74mm drawer",
+  "plates": 1,
+  "objects": 1,
+  "grams": 211.0,
+  "minutes": 254.1,
+  "filament": "black",
+  "warning": ""
+ },
+ "face_74_black_x1": {
+  "path": "projects/modules-74mm/faceplate_74mm_black_x1.3mf",
+  "title": "74mm faceplate, black, 1 per plate",
+  "plates": 1,
+  "objects": 1,
+  "grams": 34.3,
+  "minutes": 45.7,
+  "filament": "black",
+  "warning": ""
+ },
+ "frame_71": {
+  "path": "projects/modules-71mm/frame_71mm.3mf",
+  "title": "71mm frame",
+  "plates": 1,
+  "objects": 1,
+  "grams": 263.4,
+  "minutes": 362.5,
+  "filament": "black",
+  "warning": ""
+ },
+ "drawer_71": {
+  "path": "projects/modules-71mm/drawer_71mm.3mf",
+  "title": "71mm drawer",
+  "plates": 1,
+  "objects": 1,
+  "grams": 205.0,
+  "minutes": 248.9,
+  "filament": "black",
+  "warning": ""
+ },
+ "face_71_sage_x1": {
+  "path": "projects/modules-71mm/faceplate_71mm_sage_x1.3mf",
+  "title": "71mm faceplate, sage, 1 per plate",
+  "plates": 1,
+  "objects": 1,
+  "grams": 32.9,
+  "minutes": 44.4,
+  "filament": "sage",
+  "warning": ""
+ },
+ "face_71_sage_x3": {
+  "path": "projects/modules-71mm/faceplate_71mm_sage_x3.3mf",
+  "title": "71mm faceplate, sage, 3 per plate",
+  "plates": 1,
+  "objects": 3,
+  "grams": 98.4,
+  "minutes": 131.9,
+  "filament": "sage",
+  "warning": ""
+ },
+ "frame_89-5": {
+  "path": "projects/modules-89-5mm/frame_89-5mm.3mf",
+  "title": "89.5mm frame",
+  "plates": 1,
+  "objects": 1,
+  "grams": 278.2,
+  "minutes": 392.8,
+  "filament": "black",
+  "warning": ""
+ },
+ "drawer_89-5": {
+  "path": "projects/modules-89-5mm/drawer_89-5mm.3mf",
+  "title": "89.5mm drawer",
+  "plates": 1,
+  "objects": 1,
+  "grams": 241.9,
+  "minutes": 287.6,
+  "filament": "black",
+  "warning": ""
+ },
+ "face_89-5_sage_x1": {
+  "path": "projects/modules-89-5mm/faceplate_89-5mm_sage_x1.3mf",
+  "title": "89.5mm faceplate, sage, 1 per plate",
+  "plates": 1,
+  "objects": 1,
+  "grams": 42.2,
+  "minutes": 54.5,
+  "filament": "sage",
+  "warning": ""
+ },
+ "face_89-5_sage_x2": {
+  "path": "projects/modules-89-5mm/faceplate_89-5mm_sage_x2.3mf",
+  "title": "89.5mm faceplate, sage, 2 per plate",
+  "plates": 1,
+  "objects": 2,
+  "grams": 84.3,
+  "minutes": 108.8,
+  "filament": "sage",
+  "warning": ""
+ },
+ "sp30": {
+  "path": "projects/tpu/top_spacers_3-0mm_x24.3mf",
+  "title": "Top spacers 3.0 mm, 24",
+  "plates": 1,
+  "objects": 24,
+  "grams": 6.8,
+  "minutes": 19.7,
+  "filament": "tpu",
+  "warning": ""
+ },
+ "sp35": {
+  "path": "projects/tpu/top_spacers_3-5mm_x8.3mf",
+  "title": "Top spacers 3.5 mm, 8",
+  "plates": 1,
+  "objects": 8,
+  "grams": 2.6,
+  "minutes": 7.4,
+  "filament": "tpu",
+  "warning": ""
+ }
+}
