@@ -374,8 +374,8 @@
   "title": "Paper shelf side panels, 2",
   "plates": 2,
   "objects": 2,
-  "grams": 281.7,
-  "minutes": 317.5,
+  "grams": 207.5,
+  "minutes": 275.0,
   "filament": "black",
   "warning": ""
  },
@@ -384,8 +384,8 @@
   "title": "Paper shelf shelf halves, 6",
   "plates": 6,
   "objects": 6,
-  "grams": 514.3,
-  "minutes": 617.7,
+  "grams": 407.2,
+  "minutes": 578.5,
   "filament": "black",
   "warning": ""
  }

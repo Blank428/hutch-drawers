@@ -2,6 +2,7 @@
 import json, os, subprocess, sys
 import numpy as np, trimesh
 import paper_shelf as ps
+import paper_shelf_lite as L   # lighter version: windowed panels, slatted middle and top shelves, solid base
 
 STL = "/home/claude/deliver/paper_shelf/stl"
 REPO = "/home/claude/hutch-drawers"
@@ -17,10 +18,10 @@ def save(m, name):
     return f"{STL}/{name}.stl"
 
 
-panels = [save(ps.panel_print(False), "paper_shelf_side_panel_left"), save(ps.panel_print(True), "paper_shelf_side_panel_right")]
+panels = [save(L.panel_print(False), "paper_shelf_side_panel_left"), save(L.panel_print(True), "paper_shelf_side_panel_right")]
 shelves = []
 for name, (z0, ribs) in ps.SHELVES.items():
-    l, r = ps.shelf_halves(z0, ribs)
+    l, r = ps.shelf_halves(z0, ribs) if name == "base" else L.shelf_halves(z0, ribs)
     shelves += [save(ps.shelf_print(l), f"paper_shelf_{name}_shelf_left_half"), save(ps.shelf_print(r), f"paper_shelf_{name}_shelf_right_half")]
 pan, a, b = ps.fit_test()
 fit = [save(ps._drop(pan.rotate([0, -90, 0])), "paper_shelf_fit_test_panel_slice"),
