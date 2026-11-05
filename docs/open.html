@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Open in Bambu Studio</title>
+<meta name="robots" content="noindex">
+<style>
+:root { --bg: #e9ece6; --card: #f8f9f6; --ink: #151715; --muted: #5d645c; --line: #d3d8cf; --accent: #e49a2a; }
+@media (prefers-color-scheme: dark) { :root { --bg: #0e100e; --card: #161916; --ink: #e7eae4; --muted: #99a196; --line: #283028; --accent: #f0aa42; } }
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: var(--bg); color: var(--ink); font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; padding: 16px; }
+main { width: min(100%, 460px); background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 24px; display: grid; gap: 14px; }
+.k { font: 12px ui-monospace, Menlo, monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+h1 { font-size: 1.35rem; line-height: 1.2; margin: 0; }
+code { font: 13px ui-monospace, Menlo, monospace; color: var(--muted); overflow-wrap: anywhere; }
+p { margin: 0; color: var(--muted); font-size: .92rem; }
+button { height: 44px; border-radius: 10px; border: 0; background: var(--ink); color: var(--card); font: 600 1rem inherit; font-family: inherit; cursor: pointer; }
+a { color: inherit; }
+</style>
+</head>
+<body>
+<main>
+  <div class="k">Hutch drawers</div>
+  <h1 id="title">Opening in Bambu Studio…</h1>
+  <code id="file"></code>
+  <p id="msg">Your browser may ask to open Bambu Studio: allow it. Bambu Studio then asks whether to trust the file: choose Yes.</p>
+  <button type="button" id="again">Open in Bambu Studio</button>
+  <p id="after">Once it's open you can close this tab. <a id="dl" href="#">Download the file instead</a></p>
+</main>
+<script>
+(function () {
+  var RAW = "https://raw.githubusercontent.com/Blank428/hutch-drawers/main/";
+  var f = new URLSearchParams(location.search).get("f") || "";
+  var ok = /^projects\/[A-Za-z0-9_\-\/]+\.3mf$/.test(f) && f.indexOf("..") < 0;
+  var title = document.getElementById("title");
+  if (!ok) {
+    title.textContent = "That link doesn't point to a hutch drawer project.";
+    document.getElementById("msg").hidden = true;
+    document.getElementById("again").hidden = true;
+    document.getElementById("after").hidden = true;
+    return;
+  }
+  var url = RAW + f;
+  var mac = /Macintosh|Mac OS X/.test(navigator.userAgent);
+  var deep = mac ? "bambustudioopen://" + encodeURIComponent(url) : "bambustudio://open?file=" + encodeURIComponent(url);
+  document.getElementById("file").textContent = f.split("/").pop();
+  document.getElementById("dl").href = url;
+  function go() { location.href = deep; }
+  document.getElementById("again").onclick = go;
+  go();
+})();
+</script>
+</body>
+</html>
