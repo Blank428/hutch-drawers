@@ -117,7 +117,7 @@ then slides in from the front. No screws. Print the fit test first to check both
 |---|---|---|---|
 | Fit test (panel slice + two shelf pieces) | PLA, black | 7 g · 14 min | [paper_shelf_fit_test.3mf](https://raw.githubusercontent.com/Blank428/hutch-drawers/main/projects/paper-shelf/paper_shelf_fit_test.3mf) |
 | Side panels, 2 plates | PLA, black | 282 g · 5 h 17 | [paper_shelf_side_panels_x2.3mf](https://raw.githubusercontent.com/Blank428/hutch-drawers/main/projects/paper-shelf/paper_shelf_side_panels_x2.3mf) |
-| Shelf halves, 6 plates | PLA, black | 528 g · 10 h 30 | [paper_shelf_shelf_halves_x6.3mf](https://raw.githubusercontent.com/Blank428/hutch-drawers/main/projects/paper-shelf/paper_shelf_shelf_halves_x6.3mf) |
+| Shelf halves, 6 plates | PLA, black | 514 g · 10 h 17 | [paper_shelf_shelf_halves_x6.3mf](https://raw.githubusercontent.com/Blank428/hutch-drawers/main/projects/paper-shelf/paper_shelf_shelf_halves_x6.3mf) |
 
 ## Assembly
 

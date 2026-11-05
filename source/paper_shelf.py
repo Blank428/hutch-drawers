@@ -43,6 +43,11 @@ Z_LEDGE = Z_TOP + ST + SLOT1
 SHELVES = {"base": (Z_BASE, False), "middle": (Z_MID, True), "top": (Z_TOP, True)}
 
 SPLIT_X = IN_W / 2
+
+# design: same language as the drawers
+NOTCH_W, NOTCH_D, NOTCH_R = 70.0, 20.0, 8.0     # finger notch, like the 70 mm notch on every faceplate
+TOP_R = 8.0                                      # rounded top-front corner of the side panels
+EDGE_C = 1.0                                     # small chamfer on visible front edges
 TABS_Y = (32.0, 78.0, 113.0, 148.0, 194.0)   # dovetail tabs along the centre joint (clear of the ribs)
 TAB_NECK, TAB_HEAD, TAB_LEN, TAB_CL = 10.0, 16.0, 10.0, 0.15
 
@@ -77,7 +82,14 @@ def panel_left():
     # plate guides above the top shelf, and the ledge for the upper plate
     m = m + box(-0.01, PAD_W, 0, D, Z_TOP + ST, H)
     m = m + box(-0.01, PAD_W + LEDGE_W, 0, D, Z_LEDGE, Z_LEDGE + LEDGE_T)
-    # soften the front edges a touch
+    # rounded top-front corner (side view) through the panel, guide and ledge
+    corner = box(-PT - 1, PAD_W + LEDGE_W + 1, -1, TOP_R, H - TOP_R, H + 1) - \
+        Manifold.cylinder(PT + PAD_W + LEDGE_W + 4, TOP_R, TOP_R).rotate([0, 90, 0]).translate([-PT - 2, TOP_R, H - TOP_R])
+    m = m - corner
+    # chamfer the visible vertical front edges of the panel and the plate guide
+    for x0, sgn in ((-PT, 1), (PAD_W, -1)):
+        tri = CrossSection([_ccw([(x0 - sgn * 0.01, -0.01), (x0 + sgn * EDGE_C, -0.01), (x0 - sgn * 0.01, EDGE_C)])]).extrude(H + 2).translate([0, 0, -1])
+        m = m - tri
     return m
 
 
@@ -95,7 +107,21 @@ def shelf_whole(z0, ribs):
     if ribs:
         for y0 in (0.0, d - RIB_T):
             m = m + box(1.0, IN_W - 1.0, y0, y0 + RIB_T, z0 - RIB_H, z0 + 0.01)
+    # finger notch at the front centre, the same shape as the drawer fronts' notch
+    notch = CrossSection.square([NOTCH_W - 2 * NOTCH_R, NOTCH_D + 1]).translate([SPLIT_X - NOTCH_W / 2 + NOTCH_R, -1]) + \
+        CrossSection.square([NOTCH_W, NOTCH_D - NOTCH_R + 1]).translate([SPLIT_X - NOTCH_W / 2, -1]) + \
+        CrossSection.circle(NOTCH_R).translate([SPLIT_X - NOTCH_W / 2 + NOTCH_R, NOTCH_D - NOTCH_R]) + \
+        CrossSection.circle(NOTCH_R).translate([SPLIT_X + NOTCH_W / 2 - NOTCH_R, NOTCH_D - NOTCH_R])
+    m = m - notch.extrude(ST + RIB_H + 2).translate([0, 0, z0 - RIB_H - 1])
+    # small chamfer along the top front edge (it prints against the bed, so this also hides elephant's foot)
+    c = 0.8
+    m = m - _prism_yz([(-0.01, z0 + ST + 0.01), (c, z0 + ST + 0.01), (-0.01, z0 + ST - c)], -GD - 1, IN_W + GD + 1)
     return m
+
+
+def _prism_yz(pts_yz, x0, x1):
+    """Extrude a polygon drawn in Y-Z along X from x0 to x1."""
+    return Manifold.extrude(CrossSection([_ccw(pts_yz)]), x1 - x0).rotate([90, 0, 90]).translate([x0, 0, 0])
 
 
 def _tabs(z0, grow=0.0):
