@@ -358,5 +358,35 @@
   "minutes": 7.4,
   "filament": "tpu",
   "warning": ""
+ },
+ "paper_shelf_fit": {
+  "path": "projects/paper-shelf/paper_shelf_fit_test.3mf",
+  "title": "Paper shelf fit test",
+  "plates": 1,
+  "objects": 3,
+  "grams": 7.2,
+  "minutes": 13.9,
+  "filament": "black",
+  "warning": ""
+ },
+ "paper_shelf_panels": {
+  "path": "projects/paper-shelf/paper_shelf_side_panels_x2.3mf",
+  "title": "Paper shelf side panels, 2",
+  "plates": 2,
+  "objects": 2,
+  "grams": 282.1,
+  "minutes": 317.1,
+  "filament": "black",
+  "warning": ""
+ },
+ "paper_shelf_shelves": {
+  "path": "projects/paper-shelf/paper_shelf_shelf_halves_x6.3mf",
+  "title": "Paper shelf shelf halves, 6",
+  "plates": 6,
+  "objects": 6,
+  "grams": 528.2,
+  "minutes": 629.8,
+  "filament": "black",
+  "warning": ""
  }
 }

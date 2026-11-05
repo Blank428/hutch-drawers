@@ -1,7 +1,7 @@
 # Hutch drawers
 
-A 3D-printable, modular drawer system for a desk hutch: 18 freestanding drawer modules
-across three top cubbies and a lower bay, printed on a Bambu Lab A1 in black and sage PLA.
+A 3D-printable, modular drawer system for a desk hutch: 14 freestanding drawer modules
+across two top cubbies and a lower bay, plus a paper and build-plate shelf in the top-left cubby, printed on a Bambu Lab A1 in black and sage PLA.
 
 ![Layout](docs/hutch_layout.png)
 
@@ -103,6 +103,21 @@ The build tracker uses those links for its "Open in Bambu Studio" buttons.
 | Foot pads, 32 | TPU 95A | 3 g · 11 min | [foot_pads_x32.3mf](https://raw.githubusercontent.com/Blank428/hutch-drawers/main/projects/tpu/foot_pads_x32.3mf) |
 | Top spacers 3.0 mm, 24 | TPU 95A | 7 g · 20 min | [top_spacers_3-0mm_x24.3mf](https://raw.githubusercontent.com/Blank428/hutch-drawers/main/projects/tpu/top_spacers_3-0mm_x24.3mf) |
 | Top spacers 3.5 mm, 8 | TPU 95A | 3 g · 7 min | [top_spacers_3-5mm_x8.3mf](https://raw.githubusercontent.com/Blank428/hutch-drawers/main/projects/tpu/top_spacers_3-5mm_x8.3mf) |
+
+### Paper shelf (top-left cubby)
+
+The top-left cubby holds a freestanding shelf instead of drawers: printer paper (a full ream) on
+the bottom, lined paper in the middle, and two build-plate slots on top. Two side panels with
+sliding-dovetail grooves; each shelf prints as two halves that lock together with dovetail tabs,
+then slides in from the front. No screws. Print the fit test first to check both joints.
+
+![Paper shelf](docs/paper_shelf_preview.png)
+
+| Project | Material | Bambu estimate | File |
+|---|---|---|---|
+| Fit test (panel slice + two shelf pieces) | PLA, black | 7 g · 14 min | [paper_shelf_fit_test.3mf](https://raw.githubusercontent.com/Blank428/hutch-drawers/main/projects/paper-shelf/paper_shelf_fit_test.3mf) |
+| Side panels, 2 plates | PLA, black | 282 g · 5 h 17 | [paper_shelf_side_panels_x2.3mf](https://raw.githubusercontent.com/Blank428/hutch-drawers/main/projects/paper-shelf/paper_shelf_side_panels_x2.3mf) |
+| Shelf halves, 6 plates | PLA, black | 528 g · 10 h 30 | [paper_shelf_shelf_halves_x6.3mf](https://raw.githubusercontent.com/Blank428/hutch-drawers/main/projects/paper-shelf/paper_shelf_shelf_halves_x6.3mf) |
 
 ## Assembly
 
