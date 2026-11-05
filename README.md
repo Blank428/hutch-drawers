@@ -113,15 +113,28 @@ then slides in from the front. No screws. Print the fit test first to check both
 
 To save filament, the side panels have rounded windows and the middle and top shelves are slatted,
 with slots running front to back so sheets and build plates slide without catching. The base shelf
-stays solid under the ream. About 615 g in all, down from 796 g for the fully solid version.
+stays solid under the ream. About 630 g in all, down from 796 g for the fully solid version.
+
+The seam between the two halves of the middle and top shelves is built to carry bending, not just
+to hold the halves together. Three flat dovetail tabs keep the halves from pulling apart, and two
+deep T-tabs (front, behind the finger notch, and back, into the back rib) run through the shelf
+plate and a 7 mm keel underneath. Under load the top of the seam presses together and the T-tabs
+hold the bottom, so the shelf stays flat instead of dipping in the middle. The T-tab shoulders
+are tapered, so the joint goes together loose and wedges tight (0.05 mm of play) as it seats.
+
+![Centre seam](docs/paper_shelf_seam.png)
+
+**Assembling a shelf:** lay the right half flat, ribs down, and lower the left half straight down
+onto it until the top is flush. Press firmly over the T-tabs for the last millimetre. Then slide
+the shelf into the side panels from the front. The base shelf has no keel; it goes together the same way.
 
 ![Paper shelf](docs/paper_shelf_preview.png)
 
 | Project | Material | Bambu estimate | File |
 |---|---|---|---|
-| Fit test (panel slice + two shelf pieces) | PLA, black | 7 g · 14 min | [paper_shelf_fit_test.3mf](https://raw.githubusercontent.com/Blank428/hutch-drawers/main/projects/paper-shelf/paper_shelf_fit_test.3mf) |
+| Fit test (panel slice, two shelf pieces, seam sample) | PLA, black | 15 g · 29 min | [paper_shelf_fit_test.3mf](https://raw.githubusercontent.com/Blank428/hutch-drawers/main/projects/paper-shelf/paper_shelf_fit_test.3mf) |
 | Side panels, 2 plates | PLA, black | 208 g · 4 h 35 | [paper_shelf_side_panels_x2.3mf](https://raw.githubusercontent.com/Blank428/hutch-drawers/main/projects/paper-shelf/paper_shelf_side_panels_x2.3mf) |
-| Shelf halves, 6 plates | PLA, black | 407 g · 9 h 38 | [paper_shelf_shelf_halves_x6.3mf](https://raw.githubusercontent.com/Blank428/hutch-drawers/main/projects/paper-shelf/paper_shelf_shelf_halves_x6.3mf) |
+| Shelf halves, 6 plates | PLA, black | 424 g · 10 h 12 | [paper_shelf_shelf_halves_x6.3mf](https://raw.githubusercontent.com/Blank428/hutch-drawers/main/projects/paper-shelf/paper_shelf_shelf_halves_x6.3mf) |
 
 ## Assembly
 

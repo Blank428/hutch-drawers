@@ -26,6 +26,8 @@ for name, (z0, ribs) in ps.SHELVES.items():
 pan, a, b = ps.fit_test()
 fit = [save(ps._drop(pan.rotate([0, -90, 0])), "paper_shelf_fit_test_panel_slice"),
        save(ps.shelf_print(a), "paper_shelf_fit_test_shelf_a"), save(ps.shelf_print(b), "paper_shelf_fit_test_shelf_b")]
+sa, sb = L.seam_test()
+fit += [save(ps.shelf_print(sa), "paper_shelf_fit_test_seam_left"), save(ps.shelf_print(sb), "paper_shelf_fit_test_seam_right")]
 
 jobs = [("paper_shelf_fit", "projects/paper-shelf/paper_shelf_fit_test.3mf", "Paper shelf fit test", fit),
         ("paper_shelf_panels", "projects/paper-shelf/paper_shelf_side_panels_x2.3mf", "Paper shelf side panels, 2", panels),

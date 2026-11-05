@@ -363,9 +363,9 @@
   "path": "projects/paper-shelf/paper_shelf_fit_test.3mf",
   "title": "Paper shelf fit test",
   "plates": 1,
-  "objects": 3,
-  "grams": 7.2,
-  "minutes": 13.9,
+  "objects": 5,
+  "grams": 15.4,
+  "minutes": 28.7,
   "filament": "black",
   "warning": ""
  },
@@ -375,7 +375,7 @@
   "plates": 2,
   "objects": 2,
   "grams": 207.5,
-  "minutes": 275.0,
+  "minutes": 275.1,
   "filament": "black",
   "warning": ""
  },
@@ -384,8 +384,8 @@
   "title": "Paper shelf shelf halves, 6",
   "plates": 6,
   "objects": 6,
-  "grams": 407.2,
-  "minutes": 578.5,
+  "grams": 424.0,
+  "minutes": 611.5,
   "filament": "black",
   "warning": ""
  }

@@ -104,3 +104,110 @@ def assembled(base_slatted=True):
         l, r = shelf_halves(z0, ribs) if (name != "base" or base_slatted) else ps.shelf_halves(z0, ribs)
         parts += [(f"{name}_left", l), (f"{name}_right", r)]
     return parts
+
+
+# ----------------------------------------------------------------------------- stiff centre seam
+# The plate-level dovetail tabs stop the halves pulling apart, but on their own the seam is a hinge.
+# Two deep T-tabs (front, behind the finger notch, and back, into the back rib) run the full depth of
+# shelf plate + a 7 mm keel. Pressing the halves together, the top of the seam is in compression and
+# the T-head at the keel bottom takes the tension, so the seam carries bending like one solid shelf.
+# The T-head's shoulder is tapered top to bottom: lowering the left half onto the right half, it has 0.5 mm
+# of play at first and wedges down to 0.05 mm as the seam goes flush, so the joint seats tight with no slop.
+DT_NECK_W, DT_HEAD_W = 8.0, 18.0     # in Y
+DT_NECK_L, DT_HEAD_L = 6.0, 8.0      # in X, from the seam
+DT_TAPER = 0.8                       # shoulder lead-in, over the full tab height
+DT_CL_SHOULDER = 0.05                # seated play at the load-bearing shoulder (tune after the fit test)
+DT_CL_SIDE, DT_CL_FRONT = 0.15, 0.3
+KEEL_HALF = 20.0                     # keel runs SPLIT_X +/- 20
+FRONT_KEEL = (20.0, 46.0)            # y range (behind the 20 mm notch)
+DT_Y_FRONT = 33.0
+DT_Y_BACK = 203.0
+BACK_KEEL_Y0 = 188.0
+PLATE_TABS_Y = (78.0, 113.0, 148.0)  # the remaining plate-level dovetails
+
+
+def _keels(z0):
+    d = D - ps.STOP - 0.3
+    k = box(SPLIT_X - KEEL_HALF, SPLIT_X + KEEL_HALF, FRONT_KEEL[0], FRONT_KEEL[1], z0 - ps.RIB_H, z0 + 0.01)
+    k = k + box(SPLIT_X - KEEL_HALF, SPLIT_X + KEEL_HALF, BACK_KEEL_Y0, d, z0 - ps.RIB_H, z0 + 0.01)
+    return k
+
+
+def _t_tab(yc, z0, socket=False):
+    """Deep T-tab, owned by the left half; socket=True gives the cavity cut through the right half."""
+    zb, zt = z0 - ps.RIB_H, z0 + ST
+    cs, cf = (DT_CL_SIDE, DT_CL_FRONT) if socket else (0.0, 0.0)
+    nw, hw = DT_NECK_W / 2 + cs, DT_HEAD_W / 2 + cs
+    x0 = SPLIT_X - 0.5
+    # neck + head in X-Y, extruded in slices so the shoulder (x = SPLIT_X + neck length) tapers with height:
+    # neck length is DT_NECK_L at the top and DT_NECK_L + DT_TAPER at the bottom.
+    out = None
+    n = 6
+    for i in range(n):
+        za, zb_ = zb + (zt - zb) * i / n, zb + (zt - zb) * (i + 1) / n
+        zm = (za + zb_) / 2
+        nl = DT_NECK_L + DT_TAPER * (zt - zm) / (zt - zb) - (DT_CL_SHOULDER if socket else 0.0)
+        xs = SPLIT_X + nl
+        neck = CrossSection.square([xs - x0 + 0.01, 2 * nw]).translate([x0, yc - nw])
+        # the socket's head cavity keeps a fixed front face, clear of the tab head at its longest
+        hl = (SPLIT_X + DT_NECK_L + DT_TAPER + DT_HEAD_L + cf - xs) if socket else DT_HEAD_L
+        head = CrossSection.square([hl, 2 * hw]).translate([xs, yc - hw])
+        sl = (neck + head).extrude(zb_ - za + (0.02 if socket else 0.0)).translate([0, 0, za - (0.01 if socket else 0.0)])
+        out = sl if out is None else out + sl
+    if socket:  # open the socket fully through top and bottom
+        out = out + _t_tab_ext(yc, z0)
+    return out
+
+
+def _t_tab_ext(yc, z0):
+    """Extend the socket 1 mm past the top and bottom faces so it is a clean through-cut."""
+    nw, hw = DT_NECK_W / 2 + DT_CL_SIDE, DT_HEAD_W / 2 + DT_CL_SIDE
+    x0 = SPLIT_X - 0.5
+    parts = []
+    for z_a, z_b, nl in ((z0 - ps.RIB_H - 1, z0 - ps.RIB_H + 0.01, DT_NECK_L + DT_TAPER - DT_CL_SHOULDER), (z0 + ST - 0.01, z0 + ST + 1, DT_NECK_L - DT_CL_SHOULDER)):
+        xs = SPLIT_X + nl
+        cs = CrossSection.square([xs - x0, 2 * nw]).translate([x0, yc - nw]) + \
+            CrossSection.square([SPLIT_X + DT_NECK_L + DT_TAPER + DT_HEAD_L + DT_CL_FRONT - xs, 2 * hw]).translate([xs, yc - hw])
+        parts.append(cs.extrude(z_b - z_a).translate([0, 0, z_a]))
+    return parts[0] + parts[1]
+
+
+def _plate_tabs(z0, grow=0.0):
+    out = None
+    for y in PLATE_TABS_Y:
+        pts = [(SPLIT_X - 0.5, y - ps.TAB_NECK / 2 - grow), (SPLIT_X + ps.TAB_LEN + grow, y - ps.TAB_HEAD / 2 - grow),
+               (SPLIT_X + ps.TAB_LEN + grow, y + ps.TAB_HEAD / 2 + grow), (SPLIT_X - 0.5, y + ps.TAB_NECK / 2 + grow)]
+        t = CrossSection([_ccw(pts)]).extrude(ST + 2 * grow).translate([0, 0, z0 - grow])
+        out = t if out is None else out + t
+    return out
+
+
+def shelf_whole_stiff(z0, ribs):
+    return shelf_whole(z0, ribs) + _keels(z0)
+
+
+def shelf_halves(z0, ribs):
+    """Ribbed (middle and top) shelves get the stiff seam; the base shelf rests on the floor and keeps the original joint."""
+    if not ribs:
+        orig = ps.shelf_whole
+        ps.shelf_whole = shelf_whole
+        try:
+            return ps.shelf_halves(z0, ribs)
+        finally:
+            ps.shelf_whole = orig
+    whole = shelf_whole_stiff(z0, ribs)
+    big = 1000.0
+    hair = box(SPLIT_X - 0.15, SPLIT_X + 0.15, -1, D, z0 - ps.RIB_H - 1, z0)
+    tabs = _plate_tabs(z0) + _t_tab(DT_Y_FRONT, z0) + _t_tab(DT_Y_BACK, z0)
+    left = (whole ^ box(-big, SPLIT_X, -big, big, -big, big)) - hair
+    left = left + (whole ^ tabs)
+    sock = _plate_tabs(z0, ps.TAB_CL) + _t_tab(DT_Y_FRONT, z0, True) + _t_tab(DT_Y_BACK, z0, True)
+    right = (whole ^ box(SPLIT_X, big, -big, big, -big, big)) - hair - sock
+    return left, right
+
+
+def seam_test():
+    """A 44 x 32 mm sample of the real middle shelf's seam (front deep T-tab and keel), for the fit test."""
+    l, r = shelf_halves(ps.Z_MID, True)
+    clip = box(SPLIT_X - 22, SPLIT_X + 22, 20.0, 52.0, -1000, 1000)
+    return l ^ clip, r ^ clip
