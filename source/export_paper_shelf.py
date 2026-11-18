@@ -23,11 +23,15 @@ shelves = []
 for name, (z0, ribs) in ps.SHELVES.items():
     l, r = ps.shelf_halves(z0, ribs) if name == "base" else L.shelf_halves(z0, ribs)
     shelves += [save(ps.shelf_print(l), f"paper_shelf_{name}_shelf_left_half"), save(ps.shelf_print(r), f"paper_shelf_{name}_shelf_right_half")]
+    if ribs:  # middle and top shelves: one front and one back lock key each
+        f_len, b_len = L.key_lengths()
+        shelves += [save(L.lock_key(f_len), f"paper_shelf_{name}_lock_key_front"), save(L.lock_key(b_len), f"paper_shelf_{name}_lock_key_back")]
 pan, a, b = ps.fit_test()
 fit = [save(ps._drop(pan.rotate([0, -90, 0])), "paper_shelf_fit_test_panel_slice"),
        save(ps.shelf_print(a), "paper_shelf_fit_test_shelf_a"), save(ps.shelf_print(b), "paper_shelf_fit_test_shelf_b")]
 sa, sb = L.seam_test()
 fit += [save(ps.shelf_print(sa), "paper_shelf_fit_test_seam_left"), save(ps.shelf_print(sb), "paper_shelf_fit_test_seam_right")]
+fit += [save(L.lock_key(L.key_lengths()[0]), "paper_shelf_fit_test_lock_key")]
 
 jobs = [("paper_shelf_fit", "projects/paper-shelf/paper_shelf_fit_test.3mf", "Paper shelf fit test", fit),
         ("paper_shelf_panels", "projects/paper-shelf/paper_shelf_side_panels_x2.3mf", "Paper shelf side panels, 2", panels),

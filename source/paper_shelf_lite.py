@@ -211,3 +211,71 @@ def seam_test():
     l, r = shelf_halves(ps.Z_MID, True)
     clip = box(SPLIT_X - 22, SPLIT_X + 22, 20.0, 52.0, -1000, 1000)
     return l ^ clip, r ^ clip
+
+
+# ----------------------------------------------------------------------------- lock keys
+# Anything that goes together vertically can come apart the same way, so the T-tabs alone let the
+# right half slide down off them under load. A square lock key pushed through each keel, front to back,
+# passes through the right half's keel walls and the left half's T-tab head, so neither half can move
+# up, down or apart once it's in. Front key goes in from the front (behind the finger notch), back key
+# from the back, before the shelf slides into the side panels.
+KEY = 3.5            # key cross-section (square)
+KEY_CL = 0.15        # hole clearance per side
+KEY_RECESS = 0.3     # key sits this far inside each face
+KEY_X = SPLIT_X + DT_NECK_L + DT_TAPER / 2 + DT_HEAD_L / 2   # through the middle of the T-head
+
+
+def _key_z(z0):
+    return (z0 - ps.RIB_H + z0 + ST) / 2   # mid-height of the tab
+
+
+def key_spans():
+    d = D - ps.STOP - 0.3
+    return [(FRONT_KEEL[0], FRONT_KEEL[1]), (BACK_KEEL_Y0, d)]
+
+
+def key_holes(z0):
+    h = KEY / 2 + KEY_CL
+    zc = _key_z(z0)
+    out = None
+    for y0, y1 in key_spans():
+        b = box(KEY_X - h, KEY_X + h, y0 - 1, y1 + 1, zc - h, zc + h)
+        out = b if out is None else out + b
+    return out
+
+
+def lock_key(length):
+    """Printed lying flat: KEY x KEY square, chamfered ends so it starts easily."""
+    c = 0.6
+    body = box(0, length, 0, KEY, 0, KEY)
+    for x0, sgn in ((0, 1), (length, -1)):
+        for (ya, za) in ((0, 0), (KEY, 0), (0, KEY), (KEY, KEY)):
+            pass
+    # simple lead-in: taper the last 1.5 mm at the insertion end
+    tip = Manifold.hull(box(length - 0.01, length, c, KEY - c, c, KEY - c) + box(length - 1.5, length - 1.49, 0, KEY, 0, KEY))
+    return (box(0, length - 1.5, 0, KEY, 0, KEY) + tip)
+
+
+def key_lengths():
+    return [y1 - y0 - 2 * KEY_RECESS for y0, y1 in key_spans()]
+
+
+_halves_unkeyed = shelf_halves
+
+
+def shelf_halves(z0, ribs):
+    l, r = _halves_unkeyed(z0, ribs)
+    if not ribs:
+        return l, r
+    h = key_holes(z0)
+    return l - h, r - h
+
+
+def keys_in_place(z0):
+    """The two keys where they sit when assembled (for checks and renders)."""
+    zc = _key_z(z0)
+    out = []
+    for (y0, y1), ln in zip(key_spans(), key_lengths()):
+        k = lock_key(ln).rotate([0, 0, 90]).translate([KEY_X + KEY / 2, y0 + KEY_RECESS, zc - KEY / 2])
+        out.append(k)
+    return out

@@ -124,17 +124,22 @@ are tapered, so the joint goes together loose and wedges tight (0.05 mm of play)
 
 ![Centre seam](docs/paper_shelf_seam.png)
 
+**Lock keys:** anything that goes together vertically can come apart the same way, so the middle
+and top shelves each get two small square lock keys. Once the halves are flush, push one key into
+the hole in the front keel (behind the finger notch) and one into the back keel. Each key passes
+through both halves and the T-tab head, so the halves can't move up, down or apart.
+
 **Assembling a shelf:** lay the right half flat, ribs down, and lower the left half straight down
-onto it until the top is flush. Press firmly over the T-tabs for the last millimetre. Then slide
-the shelf into the side panels from the front. The base shelf has no keel; it goes together the same way.
+onto it until the top is flush. Press firmly over the T-tabs for the last millimetre. Push in the
+front and back lock keys (pointed end first). Then slide the shelf into the side panels from the front. The base shelf has no keel; it goes together the same way.
 
 ![Paper shelf](docs/paper_shelf_preview.png)
 
 | Project | Material | Bambu estimate | File |
 |---|---|---|---|
-| Fit test (panel slice, two shelf pieces, seam sample) | PLA, black | 15 g · 29 min | [paper_shelf_fit_test.3mf](https://raw.githubusercontent.com/Blank428/hutch-drawers/main/projects/paper-shelf/paper_shelf_fit_test.3mf) |
+| Fit test (panel slice, two shelf pieces, seam sample, lock key) | PLA, black | 16 g · 31 min | [paper_shelf_fit_test.3mf](https://raw.githubusercontent.com/Blank428/hutch-drawers/main/projects/paper-shelf/paper_shelf_fit_test.3mf) |
 | Side panels, 2 plates | PLA, black | 208 g · 4 h 35 | [paper_shelf_side_panels_x2.3mf](https://raw.githubusercontent.com/Blank428/hutch-drawers/main/projects/paper-shelf/paper_shelf_side_panels_x2.3mf) |
-| Shelf halves, 6 plates | PLA, black | 424 g · 10 h 12 | [paper_shelf_shelf_halves_x6.3mf](https://raw.githubusercontent.com/Blank428/hutch-drawers/main/projects/paper-shelf/paper_shelf_shelf_halves_x6.3mf) |
+| Shelf halves and lock keys, 6 plates | PLA, black | 427 g · 10 h 22 | [paper_shelf_shelf_halves_x6.3mf](https://raw.githubusercontent.com/Blank428/hutch-drawers/main/projects/paper-shelf/paper_shelf_shelf_halves_x6.3mf) |
 
 ## Assembly
 
