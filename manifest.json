@@ -375,7 +375,7 @@
   "plates": 2,
   "objects": 2,
   "grams": 207.5,
-  "minutes": 275.2,
+  "minutes": 275.1,
   "filament": "black",
   "warning": ""
  },
@@ -383,9 +383,9 @@
   "path": "projects/paper-shelf/paper_shelf_shelf_halves_x6.3mf",
   "title": "Paper shelf shelf halves, 6",
   "plates": 6,
-  "objects": 10,
-  "grams": 426.7,
-  "minutes": 622.2,
+  "objects": 14,
+  "grams": 428.3,
+  "minutes": 624.6,
   "filament": "black",
   "warning": ""
  }

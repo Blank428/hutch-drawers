@@ -26,6 +26,7 @@ for name, (z0, ribs) in ps.SHELVES.items():
     if ribs:  # middle and top shelves: one front and one back lock key each
         f_len, b_len = L.key_lengths()
         shelves += [save(L.lock_key(f_len), f"paper_shelf_{name}_lock_key_front"), save(L.lock_key(b_len), f"paper_shelf_{name}_lock_key_back")]
+        shelves += [save(L.lock_key_spare(f_len), f"paper_shelf_{name}_lock_key_front_spare_thinner"), save(L.lock_key_spare(b_len), f"paper_shelf_{name}_lock_key_back_spare_thinner")]
 pan, a, b = ps.fit_test()
 fit = [save(ps._drop(pan.rotate([0, -90, 0])), "paper_shelf_fit_test_panel_slice"),
        save(ps.shelf_print(a), "paper_shelf_fit_test_shelf_a"), save(ps.shelf_print(b), "paper_shelf_fit_test_shelf_b")]

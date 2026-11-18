@@ -279,3 +279,13 @@ def keys_in_place(z0):
         k = lock_key(ln).rotate([0, 0, 90]).translate([KEY_X + KEY / 2, y0 + KEY_RECESS, zc - KEY / 2])
         out.append(k)
     return out
+
+
+def lock_key_spare(length, shrink=0.15):
+    """A slightly thinner key for when the first one is too tight. Marked with a dimple on one face."""
+    k = KEY - shrink
+    c = 0.6
+    body = box(0, length - 1.5, 0, k, 0, k)
+    tip = Manifold.hull(box(length - 0.01, length, c, k - c, c, k - c) + box(length - 1.5, length - 1.49, 0, k, 0, k))
+    dimple = Manifold.sphere(0.9, 24).translate([3.0, k / 2, k + 0.35])
+    return body + tip - dimple
