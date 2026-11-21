@@ -156,4 +156,17 @@ opens a project straight in Bambu Studio when you press "Open in Bambu Studio" i
 (local files skip Bambu's "not from a trusted site" prompt), and builds label tag plates on demand:
 one plate per front colour with the colour-change pause already set at 0.8 mm.
 
+It also builds Gridfinity bins (`helper/bins.js`, using the vendored manifold-3d): plain bins with
+optional dividers, on the standard 42 mm grid with 7 mm height units and no stacking lip, sized to seat
+in the sockets moulded into every drawer floor. The tracker's Bins section plans them per drawer (from a
+photo, with Claude) and sends them here; bins are packed onto plates by colour.
+
+| Drawer | Clear height above the sockets | Tallest bin |
+|---|---|---|
+| 66 mm | 54.6 mm | 8 units (56 mm) |
+| 71 mm | 59.6 mm | 9 units (63 mm) |
+| 74 mm | 62.6 mm | 9 units (63 mm) |
+| 89.5 mm | 78.0 mm | 11 units (77 mm) |
+| 128 mm | 116.5 mm | 17 units (119 mm) |
+
 Install or update: `bash helper/install.sh` (runs at login via a LaunchAgent, listens on 127.0.0.1:47833 only).
