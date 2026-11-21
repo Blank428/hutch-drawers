@@ -4,6 +4,7 @@
 Runs on this Mac only (127.0.0.1). The tracker's buttons open a link to it; the helper
   /open?f=projects/...3mf   opens that project from a local copy of the repo
   /labels?d=<data>          builds a Bambu project of label tags and opens it
+  /bins?d=<data>            builds a Bambu project of Gridfinity bins and opens it
 then closes the browser tab the link opened in. Local files open without Bambu Studio's
 "not from a trusted site" prompt.
 """
@@ -14,9 +15,10 @@ PORT = 47833
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)                       # the git clone this file lives in
 LABELS = os.path.join(os.path.dirname(REPO), "labels")
+BINS = os.path.join(os.path.dirname(REPO), "bins")
 NODE = next((p for p in ("/opt/homebrew/bin/node", "/usr/local/bin/node", "/usr/bin/node") if os.path.exists(p)), "node")
 PROJECT = re.compile(r"^projects/[A-Za-z0-9_\-/]+\.3mf$")
-VERSION = "1.1"
+VERSION = "1.2"
 _last_pull = 0.0
 _pull_lock = threading.Lock()
 
@@ -94,7 +96,7 @@ class Handler(BaseHTTPRequestHandler):
         q = urllib.parse.parse_qs(u.query)
         try:
             if u.path == "/ping":
-                return self.send(200, json.dumps({"ok": True, "version": VERSION}), "application/json")
+                return self.send(200, json.dumps({"ok": True, "version": VERSION, "features": ["open", "labels", "bins"]}), "application/json")
             if u.path == "/open":
                 f = (q.get("f") or [""])[0]
                 if not PROJECT.match(f) or ".." in f:
@@ -127,6 +129,24 @@ class Handler(BaseHTTPRequestHandler):
                 close_tabs_soon()
                 plates = ", ".join(f"{p['count']} for {p['colour']} fronts" for p in res["plates"])
                 return self.send(200, page("Labels opened in Bambu Studio", plates))
+            if u.path == "/bins":
+                raw = (q.get("d") or [""])[0]
+                data = json.loads(base64.urlsafe_b64decode(raw + "=" * (-len(raw) % 4)).decode())
+                bins = data.get("bins", [])[:80]
+                if not bins:
+                    return self.send(400, page("No bins to print", "Pick some bins in the tracker first.", False))
+                pull()  # bins.js may be newer than this checkout
+                os.makedirs(BINS, exist_ok=True)
+                out = os.path.join(BINS, time.strftime("hutch_bins_%Y-%m-%d_%H%M%S.3mf"))
+                r = subprocess.run([NODE, os.path.join(HERE, "bins.js"), json.dumps({"bins": bins}), out],
+                                   capture_output=True, text=True, timeout=180)
+                res = json.loads((r.stdout or "{}").strip().splitlines()[-1] or "{}")
+                if not res.get("ok"):
+                    return self.send(500, page("Couldn't build the bins", res.get("error") or r.stderr[-300:], False))
+                open_in_bambu(out)
+                close_tabs_soon()
+                plates = ", ".join(f"{p['count']} {p['colour']}" for p in res["plates"])
+                return self.send(200, page("Bins opened in Bambu Studio", f"{res['bins']} bins on {len(res['plates'])} plates ({plates})"))
             return self.send(404, page("Not found", u.path, False))
         except Exception as e:  # keep running whatever happens
             return self.send(500, page("Something went wrong", str(e), False))
